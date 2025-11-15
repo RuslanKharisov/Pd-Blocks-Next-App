@@ -8,6 +8,7 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { InfiniteSliderBlock } from './InfiniteSliderBlock/Component'
+import { StatsBlock } from './StatsBlock/Components'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -16,6 +17,7 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   infiniteSlider: InfiniteSliderBlock,
+  stats: StatsBlock,
 }
 
 export const RenderBlocks: React.FC<{
