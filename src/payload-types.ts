@@ -72,6 +72,8 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    brands: Brand;
+    clients: Client;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -94,6 +96,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    brands: BrandsSelect<false> | BrandsSelect<true>;
+    clients: ClientsSelect<false> | ClientsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -199,7 +203,7 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | InfiniteSliderBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -780,6 +784,52 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InfiniteSliderBlock".
+ */
+export interface InfiniteSliderBlock {
+  title?: string | null;
+  mode?: ('manual' | 'fromCollection') | null;
+  manualSlides?:
+    | {
+        logo: number | Media;
+        alt?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  collection?: ('brands' | 'clients') | null;
+  speed?: number | null;
+  speedOnHover?: number | null;
+  gap?: number | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'infiniteSlider';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "brands".
+ */
+export interface Brand {
+  id: number;
+  name: string;
+  logo: number | Media;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients".
+ */
+export interface Client {
+  id: number;
+  name: string;
+  logo: number | Media;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -989,6 +1039,14 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
+        relationTo: 'brands';
+        value: number | Brand;
+      } | null)
+    | ({
+        relationTo: 'clients';
+        value: number | Client;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -1086,6 +1144,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        infiniteSlider?: T | InfiniteSliderBlockSelect<T>;
       };
   meta?:
     | T
@@ -1182,6 +1241,27 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InfiniteSliderBlock_select".
+ */
+export interface InfiniteSliderBlockSelect<T extends boolean = true> {
+  title?: T;
+  mode?: T;
+  manualSlides?:
+    | T
+    | {
+        logo?: T;
+        alt?: T;
+        id?: T;
+      };
+  collection?: T;
+  speed?: T;
+  speedOnHover?: T;
+  gap?: T;
   id?: T;
   blockName?: T;
 }
@@ -1352,6 +1432,28 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "brands_select".
+ */
+export interface BrandsSelect<T extends boolean = true> {
+  name?: T;
+  logo?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients_select".
+ */
+export interface ClientsSelect<T extends boolean = true> {
+  name?: T;
+  logo?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
