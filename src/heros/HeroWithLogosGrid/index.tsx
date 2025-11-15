@@ -18,7 +18,7 @@ export const HeroWithLogosGrid: React.FC<Page['hero']> = ({ links, media, richTe
   })
 
   return (
-    <div className="-mt-[10.4rem]">
+    <div className="-mt-16">
       <div
         aria-hidden
         className=" z-2 absolute inset-0 isolate hidden opacity-50 contain-strict lg:block"
