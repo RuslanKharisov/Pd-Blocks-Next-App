@@ -77,7 +77,7 @@ export const IntegrationsBlock: React.FC<Props> = async ({
               key={item.id}
               title={item.title}
               description={item.description}
-              link={`/portfolios/${item.slug}`}
+              link={`/portfolio/${item.slug}`}
               logo={item.logo}
             />
           ))}
