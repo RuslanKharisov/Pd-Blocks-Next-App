@@ -3,6 +3,7 @@ import { type CollectionConfig } from 'payload'
 import { authenticated } from '@/access/authenticated'
 import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
 import { populatePublishedAt } from '@/hooks/populatePublishedAt'
+import { hero } from '@/heros/config'
 
 // ⚠️ Хуки переиспользуем/адаптируем
 
@@ -67,6 +68,10 @@ export const Portfolio: CollectionConfig<'portfolio'> = {
     {
       type: 'tabs',
       tabs: [
+        {
+          fields: [hero],
+          label: 'Hero',
+        },
         {
           label: 'Контент',
           fields: [
