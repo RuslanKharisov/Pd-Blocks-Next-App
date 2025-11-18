@@ -43,7 +43,7 @@ export const Icons: CollectionConfig = {
   ],
   upload: {
     staticDir: path.resolve(dirname, '../../public/media/icons'),
-    mimeTypes: ['image/svg+xml'],
+    // mimeTypes: ['image/svg+xml'], // Temporarily removed MIME type restriction for debugging
     imageSizes: [],
   },
 }
