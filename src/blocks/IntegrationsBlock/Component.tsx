@@ -7,6 +7,7 @@ import { Card } from '@/components/ui/card'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { Media } from '@/components/Media'
+import { GridPattern } from '@/components/ui/grid-pattern'
 
 export const IntegrationsBlock: React.FC<Props> = async ({
   title,
@@ -65,14 +66,14 @@ export const IntegrationsBlock: React.FC<Props> = async ({
 
   return (
     <section>
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto space-y-16 max-w-5xl px-6">
         <div className="text-center">
           {title && <h2 className="text-balance text-3xl font-semibold md:text-4xl">{title}</h2>}
           {description && <p className="text-muted-foreground mt-6">{description}</p>}
         </div>
 
-        <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {resolvedItems.map((item) => (
+        <div className="grid grid-cols-1 divide-x divide-y border-t border-l sm:grid-cols-2 md:grid-cols-3">
+          {resolvedItems.slice(0, 6).map((item) => (
             <IntegrationCard
               key={item.id}
               title={item.title}
@@ -100,26 +101,23 @@ const IntegrationCard = ({
   logo: any
 }) => {
   return (
-    <Card className="p-6">
-      <div className="relative">
-        <div className="flex size-10 items-center justify-center">
-          {logo && <Media resource={logo} imgClassName="size-full object-contain" />}
-        </div>
-
-        <div className="space-y-2 py-6">
-          <h3 className="text-base font-medium">{title}</h3>
-          <p className="text-muted-foreground line-clamp-2 text-sm">{description}</p>
-        </div>
-
-        <div className="flex gap-3 border-t border-dashed pt-6">
-          <Button asChild variant="outline-solid" size="sm" className="gap-1 pr-2 shadow-none">
-            <Link href={link}>
-              Learn More
-              <ChevronRight className="ml-0 size-3.5! opacity-50" />
-            </Link>
-          </Button>
-        </div>
+    <Link
+      href={link}
+      className="relative overflow-hidden p-6 last:border-r last:border-b transition-box-shadow hover:shadow-muted-foreground duration-100 hover:shadow-md  cursor-pointer"
+    >
+      <div className="-mt-2 -ml-20 pointer-events-none absolute top-0 left-1/2 size-full mask-[radial-gradient(farthest-side_at_top,white,transparent)]">
+        <GridPattern
+          className="absolute inset-0 size-full stroke-foreground/20"
+          height={40}
+          width={40}
+          x={5}
+        />
       </div>
-    </Card>
+      <div className="flex size-10 items-center justify-center">
+        {logo && <Media resource={logo} imgClassName="size-full object-contain" />}
+      </div>
+      <h3 className="mt-10 text-sm md:text-base">{title}</h3>
+      <p className="relative z-20 mt-2 font-light text-muted-foreground text-xs">{description}</p>
+    </Link>
   )
 }
