@@ -75,6 +75,8 @@ export interface Config {
     brands: Brand;
     clients: Client;
     portfolio: Portfolio;
+    icons: Icon;
+    socials: Social;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -100,6 +102,8 @@ export interface Config {
     brands: BrandsSelect<false> | BrandsSelect<true>;
     clients: ClientsSelect<false> | ClientsSelect<true>;
     portfolio: PortfolioSelect<false> | PortfolioSelect<true>;
+    icons: IconsSelect<false> | IconsSelect<true>;
+    socials: SocialsSelect<false> | SocialsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -117,10 +121,12 @@ export interface Config {
   globals: {
     header: Header;
     footer: Footer;
+    contacts: Contact;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    contacts: ContactsSelect<false> | ContactsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -214,6 +220,7 @@ export interface Page {
     | InfiniteSliderBlock
     | StatsBlock
     | IntegrationsBlock
+    | ContactBlock
   )[];
   meta?: {
     title?: string | null;
@@ -856,6 +863,17 @@ export interface IntegrationsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactBlock".
+ */
+export interface ContactBlock {
+  title: string;
+  description?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contact';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "brands".
  */
 export interface Brand {
@@ -948,6 +966,49 @@ export interface Portfolio {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons".
+ */
+export interface Icon {
+  id: number;
+  label: string;
+  /**
+   * Уникальное имя для программного использования (например: search, database)
+   */
+  key: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {};
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "socials".
+ */
+export interface Social {
+  id: number;
+  name: string;
+  /**
+   * Например: github, x, linkedin
+   */
+  key: string;
+  icon: number | Icon;
+  /**
+   * Шаблон URL: https://github.com/{username}
+   */
+  urlPattern: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1172,6 +1233,14 @@ export interface PayloadLockedDocument {
         value: number | Portfolio;
       } | null)
     | ({
+        relationTo: 'icons';
+        value: number | Icon;
+      } | null)
+    | ({
+        relationTo: 'socials';
+        value: number | Social;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -1272,6 +1341,7 @@ export interface PagesSelect<T extends boolean = true> {
         infiniteSlider?: T | InfiniteSliderBlockSelect<T>;
         stats?: T | StatsBlockSelect<T>;
         integrations?: T | IntegrationsBlockSelect<T>;
+        contact?: T | ContactBlockSelect<T>;
       };
   meta?:
     | T
@@ -1426,6 +1496,16 @@ export interface IntegrationsBlockSelect<T extends boolean = true> {
         id?: T;
       };
   collection?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactBlock_select".
+ */
+export interface ContactBlockSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
   id?: T;
   blockName?: T;
 }
@@ -1667,6 +1747,38 @@ export interface PortfolioSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons_select".
+ */
+export interface IconsSelect<T extends boolean = true> {
+  label?: T;
+  key?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?: T | {};
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "socials_select".
+ */
+export interface SocialsSelect<T extends boolean = true> {
+  name?: T;
+  key?: T;
+  icon?: T;
+  urlPattern?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2003,6 +2115,22 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts".
+ */
+export interface Contact {
+  id: number;
+  email: string;
+  emailDescription?: string | null;
+  phone: string;
+  phone2?: string | null;
+  phoneDescription?: string | null;
+  address: string;
+  addressDescription?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
@@ -2043,6 +2171,22 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contacts_select".
+ */
+export interface ContactsSelect<T extends boolean = true> {
+  email?: T;
+  emailDescription?: T;
+  phone?: T;
+  phone2?: T;
+  phoneDescription?: T;
+  address?: T;
+  addressDescription?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

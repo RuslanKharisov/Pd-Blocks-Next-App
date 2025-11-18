@@ -10,6 +10,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { InfiniteSliderBlock } from './InfiniteSliderBlock/Component'
 import { StatsBlock } from './StatsBlock/Components'
 import { IntegrationsBlock } from './IntegrationsBlock/Component'
+import { ContactBlock } from './ContactBlock/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -20,6 +21,7 @@ const blockComponents = {
   infiniteSlider: InfiniteSliderBlock,
   stats: StatsBlock,
   integrations: IntegrationsBlock,
+  contact: ContactBlock,
 }
 
 export const RenderBlocks: React.FC<{
