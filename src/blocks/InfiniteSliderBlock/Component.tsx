@@ -4,6 +4,7 @@ import { Media } from '@/components/Media'
 import { InfiniteSliderBlock as Props } from '@/payload-types'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
+import { Typography } from '@/components/ui/typography'
 
 // Это серверный компонент → можно использовать async
 export const InfiniteSliderBlock: React.FC<Props> = async ({
@@ -55,7 +56,9 @@ export const InfiniteSliderBlock: React.FC<Props> = async ({
         <div className="flex flex-col items-center md:flex-row overflow-x-hidden">
           {title && (
             <div className="md:max-w-44 md:border-r md:pr-6">
-              <p className="text-end text-lg">{title}</p>
+              <Typography tag="p" className="text-end text-lg">
+                {title}
+              </Typography>
             </div>
           )}
           <div className="relative py-6 md:w-[calc(100%-11rem)]">

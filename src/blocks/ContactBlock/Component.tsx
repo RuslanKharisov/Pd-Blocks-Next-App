@@ -4,6 +4,7 @@ import React from 'react'
 import { getCachedGlobal } from '@/utilities/getGlobals'
 
 import type { Contact, ContactBlock as Props } from '@/payload-types'
+import { Typography } from '@/components/ui/typography'
 
 export const ContactBlock: React.FC<Props> = async ({ title, description }) => {
   const contactsData: Contact = (await getCachedGlobal('contacts', 1)()) as Contact
@@ -13,9 +14,13 @@ export const ContactBlock: React.FC<Props> = async ({ title, description }) => {
 
   return (
     <div className="container">
-      <div className="flex grow flex-col justify-center px-4 md:items-center">
-        <h1 className="font-bold text-4xl md:text-5xl">{title}</h1>
-        {description && <p className="mb-5 text-base text-muted-foreground">{description}</p>}
+      <div className=" flex grow flex-col justify-center px-4 md:items-center">
+        <Typography tag="h2">{title}</Typography>
+        {description && (
+          <Typography tag="p" className="mb-5 text-base text-muted-foreground">
+            {description}
+          </Typography>
+        )}
       </div>
 
       <BorderSeparator />
@@ -80,11 +85,13 @@ function Box({ title, description, children, icon: Icon, className }: ContactBox
     >
       <div className="flex items-center gap-x-3 border-b bg-secondary/50 p-4 dark:bg-secondary/20">
         <Icon className="size-5 text-muted-foreground" strokeWidth={1} />
-        <h2 className="">{title}</h2>
+        <Typography tag="h2">{title}</Typography>
       </div>
       <div className="flex items-center gap-x-2 p-4 ">{children}</div>
       <div className="border-t p-4">
-        <p className="text-muted-foreground text-sm min-h-10">{description}</p>
+        <Typography tag="p" className="text-muted-foreground text-sm min-h-10">
+          {description}
+        </Typography>
       </div>
     </div>
   )

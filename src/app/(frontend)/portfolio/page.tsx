@@ -8,6 +8,7 @@ import { CollectionGrid } from '@/components/CollectionGrid'
 import { PageRange } from '@/components/PageRange'
 import { Pagination } from '@/components/Pagination'
 import { PorfolioCard } from '@/components/FeatureСard.tsx'
+import { Typography } from '@/components/ui/typography'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
@@ -40,8 +41,8 @@ export default async function PortfolioList() {
         />
       </div>
       <div className="container mb-16">
-        <div className="prose dark:prose-invert max-w-none">
-          <h1>Портфолио</h1>
+        <div className="max-w-none">
+          <Typography tag="h1">Портфолио</Typography>
         </div>
       </div>
 

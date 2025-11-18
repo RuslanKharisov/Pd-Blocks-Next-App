@@ -5,6 +5,7 @@ import { getPayload } from 'payload'
 import Link from 'next/link'
 import { Media } from '@/components/Media'
 import { GridPattern } from '@/components/ui/grid-pattern'
+import { Typography } from '@/components/ui/typography'
 
 export const IntegrationsBlock: React.FC<Props> = async ({
   title,
@@ -65,8 +66,16 @@ export const IntegrationsBlock: React.FC<Props> = async ({
     <section>
       <div className="container space-y-16 px-6">
         <div className="text-center">
-          {title && <h2 className="text-balance text-3xl font-semibold md:text-4xl">{title}</h2>}
-          {description && <p className="text-muted-foreground mt-6">{description}</p>}
+          {title && (
+            <Typography tag="h2" className="text-balance text-3xl font-semibold md:text-4xl">
+              {title}
+            </Typography>
+          )}
+          {description && (
+            <Typography tag="p" className="text-muted-foreground mt-6">
+              {description}
+            </Typography>
+          )}
         </div>
 
         <div className="grid grid-cols-1 divide-x divide-y border-t border-l sm:grid-cols-2 md:grid-cols-3">
@@ -97,7 +106,6 @@ const IntegrationCard = ({
   link: string
   logo: any
 }) => {
-  console.log('logo ==> ', logo)
   return (
     <Link
       href={link}
@@ -114,8 +122,12 @@ const IntegrationCard = ({
       <div className="flex size-10 items-center justify-center">
         {logo && <Media resource={logo} imgClassName="size-full object-contain" />}
       </div>
-      <h3 className="mt-10 text-sm md:text-base">{title}</h3>
-      <p className="relative z-20 mt-2 font-light text-muted-foreground text-xs">{description}</p>
+      <Typography tag="h3" className="mt-10 text-sm md:text-base">
+        {title}
+      </Typography>
+      <Typography tag="p" className="relative z-20 mt-2 font-light text-muted-foreground text-xs">
+        {description}
+      </Typography>
     </Link>
   )
 }
