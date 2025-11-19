@@ -1,9 +1,12 @@
+import { anyone } from '@/access/anyone'
+import { authenticated } from '@/access/authenticated'
 import type { GlobalConfig } from 'payload'
 
 export const Contacts: GlobalConfig = {
   slug: 'contacts',
   access: {
-    read: () => true,
+    read: anyone,
+    update: authenticated,
   },
   fields: [
     {
