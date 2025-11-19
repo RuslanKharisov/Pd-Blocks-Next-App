@@ -19,7 +19,7 @@ export const Icons: CollectionConfig = {
   },
   access: {
     read: anyone,
-    create: anyone,
+    create: authenticated,
     update: authenticated,
     delete: authenticated,
   },
@@ -44,6 +44,7 @@ export const Icons: CollectionConfig = {
   upload: {
     staticDir: path.resolve(dirname, '../../public/media/icons'),
     // mimeTypes: ['image/svg+xml'], // Temporarily removed MIME type restriction for debugging
+    // To Do: вернуть проверки типа после устранения бага в текущей версии
     imageSizes: [],
   },
 }
