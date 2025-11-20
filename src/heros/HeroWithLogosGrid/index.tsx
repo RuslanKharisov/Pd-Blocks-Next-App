@@ -26,7 +26,7 @@ export const HeroWithLogosGrid: React.FC<Page['hero']> = ({ links, media, richTe
       </div>
 
       <section className=" overflow-hidden">
-        <div className="relative mx-auto max-w-5xl px-6 pt-28 lg:pt-24">
+        <div className="relative container px-6 pt-28 lg:pt-24">
           <div className="relative z-10 mx-auto max-w-2xl text-center">
             {richText && (
               <RichText className="mb-6 text-balance" data={richText} enableGutter={false} />

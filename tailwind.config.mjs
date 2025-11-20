@@ -114,8 +114,12 @@ const config = {
               '--tw-prose-body': 'var(--text)',
               '--tw-prose-headings': 'var(--text)',
               h1: {
-                fontWeight: 'normal',
+                fontWeight: '600',
                 marginBottom: '0.25em',
+              },
+              h2: {
+                fontWeight: '600',
+                fontSize: '2.25rem',
               },
             },
           ],
@@ -123,12 +127,13 @@ const config = {
         base: {
           css: [
             {
+              '--tw-prose-body': 'var(--text)',
+              '--tw-prose-headings': 'var(--text)',
               h1: {
                 fontSize: '2.5rem',
               },
               h2: {
-                fontSize: '1.25rem',
-                fontWeight: 600,
+                fontSize: '2.25rem',
               },
             },
           ],
@@ -140,7 +145,7 @@ const config = {
                 fontSize: '3.5rem',
               },
               h2: {
-                fontSize: '1.5rem',
+                fontSize: '3rem',
               },
             },
           ],
